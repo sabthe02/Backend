@@ -58,8 +58,8 @@ app.get('/auth/refresh', checkUserCredentials('REFRESH'), refresh)
 // Users
 app.post('/login', login)
 app.post('/register', register)
-app.get('/admin/users', checkUserCredentials(), getAllUsers)
-app.get('/admin/users/:id', checkUserCredentials(), getUserById)
+app.get('/users', checkUserCredentials(), getAllUsers)
+app.get('/users/:id', checkUserCredentials(), getUserById)
 
 // Games
 app.get('/games', checkUserCredentials(), getAllGames)
