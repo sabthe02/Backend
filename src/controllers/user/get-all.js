@@ -42,31 +42,4 @@ module.exports = (request, response) => {
                 message: 'Error al intentar listar los usuarios'
             })
         })
-
-    // Listado usando paralelizacion con Promise.all
-
-    // const getAllUsersPromise = userModel
-    //     .find()
-    //     .select('-password -todos')
-    //     .skip(pagination.offset)
-    //     .limit(pagination.limit)
-
-    // const getCountPromise = userModel.count()
-
-    // Promise.all([getAllUsersPromise, getCountPromise]).then(([users, count]) => {
-    //     const meta = {
-    //         count
-    //     }
-
-    //     response.status(200).json({
-    //         meta,
-    //         users
-    //     })
-    // }).catch(error => {
-    //     console.error(error)
-
-    //     response.status(500).json({
-    //         message: 'Error al intentar listar los usuarios'
-    //     })
-    // })
 }

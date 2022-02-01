@@ -66,6 +66,31 @@ mongoose.connect(getDbConnectionString(), { useNewUrlParser: true, useUnifiedTop
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                         ],
                     ],
+
+                    opp_choices: [
+                        [
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                        ],
+                        [
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                        ],
+                        [
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                        ],
+                    ],
+
                     score: faker.datatype.number({
                         min: 0,
                         max: 5

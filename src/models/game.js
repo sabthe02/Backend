@@ -37,7 +37,13 @@ const gameSchema = new Schema({
     choices: {
         type: Array,
         required: false
+    },
+
+    opp_choices: {
+        type: Array,
+        required: false
     }
+
 })
 
 const gameModel = model('games', gameSchema)
