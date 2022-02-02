@@ -26,7 +26,7 @@ const register = require('./controllers/user/register')
 const getAllUsers = require('./controllers/user/get-all')
 const getUserById = require('./controllers/user/get-by-id')
 
-// Games
+// Partidas
 const getAllGames = require('./controllers/games/get-all')
 const getGameById = require('./controllers/games/get-by-id')
 const createGame = require('./controllers/games/create')
