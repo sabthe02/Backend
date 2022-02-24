@@ -3,7 +3,7 @@ const { userModel } = require('../../models/user')
 module.exports = (request, response) => {
     userModel
         .findOne({ _id: request.params.id })
-        .select('-password -games')
+        .select('-password')
         .then(user => {
             response.status(200).json({
                 user

@@ -7,10 +7,8 @@ module.exports = (request, response) => {
 
     const schema = Joi.object({
         type: Joi.string().valid(
-            eventTypes.NAVIGATION,
-            eventTypes.TODO_CREATED,
-            eventTypes.TODO_DELETED,
-            eventTypes.TODO_UPDATED,
+            eventTypes.GAME_CREATED,
+            eventTypes.GAME_UPDATED,
             eventTypes.REGISTER,
             eventTypes.LOGIN,
             eventTypes.TOKEN_REFRESH,

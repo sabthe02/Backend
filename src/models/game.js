@@ -3,9 +3,8 @@ const { model, Schema } = require('mongoose')
 const gameSchema = new Schema({
 
     player: {
-        type: String,
+        type: Schema.Types.ObjectId, ref: 'users',
         required: false,
-        trim: true
     },
 
     score: {
@@ -14,9 +13,8 @@ const gameSchema = new Schema({
     },
 
     opponent: {
-        type: String,
+        type: Schema.Types.ObjectId, ref: 'users',
         required: false,
-        trim: true
     },
 
     opp_score: {

@@ -1,12 +1,12 @@
-const { userModel } = require('../../models/user')
+const { gameModel } = require('../../models/game')
 
 module.exports = (request, response) => {
-    userModel
-        .findOne({ _id: request.user.id })
+    gameModel
+        .findOne({ _id: request.params.id })
         .then(user => {
-            const playedGame = user.games.id(request.params.id)
+            const game = user.games.id(request.params.id)
 
-            playedGame.set(request.body)
+            game.set(request.body)
 
             user.save().then(() => {
                 response.status(200).end()

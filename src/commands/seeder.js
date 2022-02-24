@@ -1,24 +1,17 @@
-// Utilidad para leer variables de entorno (archivo .env)
 require('dotenv').config()
 
-// Dependencias externas a utilizar
 const bcrypt = require('bcrypt')
 const faker = require('faker')
 const mongoose = require('mongoose')
 const getDbConnectionString = require('../utils/get-db-connection-string')
 
-// Importo los modelos a utilizar
 const { userModel } = require('../models/user')
 const { gameModel } = require('../models/game')
 
-// Password para utilizar en los usuarios a crear
 const userPassword = bcrypt.hashSync('super_super_secret', 2)
-
-// Declaramos lista de documentos a insertar en las colecciones
 
 const users = []
 
-// Generar una lista de usuarios
 
 for (let numeroDeIteracion = 0; numeroDeIteracion <= 15; numeroDeIteracion++) {
     users.push({
@@ -48,19 +41,13 @@ mongoose.connect(getDbConnectionString(), { useNewUrlParser: true, useUnifiedTop
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                         ],
                         [
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                         ],
                         [
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
@@ -72,19 +59,13 @@ mongoose.connect(getDbConnectionString(), { useNewUrlParser: true, useUnifiedTop
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                         ],
                         [
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
+                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) }
                         ],
                         [
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
-                            { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
                             { choice: faker.random.arrayElement(['Piedra', 'Papel', 'Tijera']) },
@@ -111,7 +92,9 @@ mongoose.connect(getDbConnectionString(), { useNewUrlParser: true, useUnifiedTop
             console.log('Se van a insertar:')
             console.log(`${games.length} Games`)
 
-            gameModel.insertMany(games)
+            gameModel.insertMany(games).then(() => {
+                mongoose.connection.close()
+            })
                
         })
 

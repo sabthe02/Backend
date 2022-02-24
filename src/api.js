@@ -26,11 +26,12 @@ const register = require('./controllers/user/register')
 const getAllUsers = require('./controllers/user/get-all')
 const getUserById = require('./controllers/user/get-by-id')
 
-// Partidas
+// Games
 const getAllGames = require('./controllers/games/get-all')
-const getGameById = require('./controllers/games/get-by-id')
+const getGamesByUser = require('./controllers/games/get-games-by-user')
 const createGame = require('./controllers/games/create')
 const updateGame = require('./controllers/games/update')
+const viewGame = require('./controllers/games/get-by-id')
 
 // Events
 const createEvent = require('./controllers/events/create')
@@ -46,7 +47,6 @@ const getRegisterEventsInOverTime = require('./controllers/events/register/get-r
 const getRegisterEvents = require('./controllers/events/register/get-register-events')
 const getRegisterEventsCount = require('./controllers/events/register/get-register-events-count')
 
-const getNavigationEventsInOverTime = require('./controllers/events/navigation/get-navigation-events-in-over-time')
 
 // ############################
 // Definicion de rutas
@@ -63,9 +63,10 @@ app.get('/users/:id', checkUserCredentials(), getUserById)
 
 // Games
 app.get('/games', checkUserCredentials(), getAllGames)
-app.get('/games/:id', checkUserCredentials(), getGameById)
+app.get('/games/users', checkUserCredentials(), getGamesByUser)
 app.post('/games', checkUserCredentials(), createGame)
-app.put('/games/:id', checkUserCredentials(), updateGame)
+app.put('/games/game', checkUserCredentials(), updateGame)
+app.get('/games/summary', checkUserCredentials(), viewGame)
 
 // Stats
 app.post('/events', checkUserCredentials(), createEvent)
@@ -81,7 +82,6 @@ app.get('/stats/events/grouped/login-register', checkUserCredentials(), getLogin
 
 app.get('/stats/events/login/in-over-time', checkUserCredentials(), getLoginEventsInOverTime)
 app.get('/stats/events/register/in-over-time', checkUserCredentials(), getRegisterEventsInOverTime)
-app.get('/stats/events/navigation/in-over-time', checkUserCredentials(), getNavigationEventsInOverTime)
 
 mongoose.connect(getDbConnectionString(), { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {

@@ -1,5 +1,4 @@
 const { model, Schema } = require('mongoose')
-const { gameSchema } = require('./game')
 
 const userSchema = new Schema({
     nickname: {
@@ -11,10 +10,6 @@ const userSchema = new Schema({
         type: String,
         required: true,
         trim: true
-    },
-    games: {
-        type: [gameSchema],
-        default: () => ([])
     }
 })
 
