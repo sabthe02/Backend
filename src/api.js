@@ -27,7 +27,6 @@ const getAllUsers = require('./controllers/user/get-all')
 const getUserById = require('./controllers/user/get-by-id')
 
 // Games
-const getAllGames = require('./controllers/games/get-all')
 const getGamesByUser = require('./controllers/games/get-games-by-user')
 const createGame = require('./controllers/games/create')
 const updateGame = require('./controllers/games/update')
@@ -36,15 +35,6 @@ const viewGame = require('./controllers/games/get-by-id')
 // Events
 const createEvent = require('./controllers/events/create')
 
-const getGroupedEvents = require('./controllers/events/get-grouped-events')
-const getLoginRegisterGroupedEvents = require('./controllers/events/get-grouped-login-register-events')
-
-const getLoginEventsInOverTime = require('./controllers/events/login/get-login-events-in-over-time')
-const getLoginEvents = require('./controllers/events/login/get-login-events')
-const getLoginEventsCount = require('./controllers/events/login/get-login-events-count')
-
-const getRegisterEventsInOverTime = require('./controllers/events/register/get-register-events-in-over-time')
-const getRegisterEvents = require('./controllers/events/register/get-register-events')
 const getRegisterEventsCount = require('./controllers/events/register/get-register-events-count')
 
 
@@ -62,26 +52,15 @@ app.get('/users', checkUserCredentials(), getAllUsers)
 app.get('/users/:id', checkUserCredentials(), getUserById)
 
 // Games
-app.get('/games', checkUserCredentials(), getAllGames)
 app.get('/games/users', checkUserCredentials(), getGamesByUser)
 app.post('/games', checkUserCredentials(), createGame)
 app.put('/games/game', checkUserCredentials(), updateGame)
-app.get('/games/summary', checkUserCredentials(), viewGame)
+app.get('/games/:id', checkUserCredentials(), viewGame)
 
 // Stats
 app.post('/events', checkUserCredentials(), createEvent)
 
-app.get('/stats/events/login', checkUserCredentials(), getLoginEvents)
-app.get('/stats/events/login/count', checkUserCredentials(), getLoginEventsCount)
-
-app.get('/stats/events/register', checkUserCredentials(), getRegisterEvents)
 app.get('/stats/events/register/count', checkUserCredentials(), getRegisterEventsCount)
-
-app.get('/stats/events/grouped', checkUserCredentials(), getGroupedEvents)
-app.get('/stats/events/grouped/login-register', checkUserCredentials(), getLoginRegisterGroupedEvents)
-
-app.get('/stats/events/login/in-over-time', checkUserCredentials(), getLoginEventsInOverTime)
-app.get('/stats/events/register/in-over-time', checkUserCredentials(), getRegisterEventsInOverTime)
 
 mongoose.connect(getDbConnectionString(), { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {

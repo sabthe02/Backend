@@ -1,9 +1,10 @@
 const { gameModel } = require('../../models/game')
 
 module.exports = (request, response) => {
-
     gameModel
         .find({ $or: [{ player: request.user.id }, { opponent: request.user.id }] })
+        .populate('player') 
+        .populate('opponent')
         .then(games => {
             response.status(200).json({
                 games

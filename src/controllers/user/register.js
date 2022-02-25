@@ -11,7 +11,6 @@ module.exports = (request, response) => {
 
     const schema = Joi.object({
         nickname: Joi.string()
-            /* .alphanum() */
             .required(),
         password: Joi.string()
             .min(7)
@@ -35,13 +34,10 @@ module.exports = (request, response) => {
             delete userWithoutPassword.games
             delete userWithoutPassword.password
 
-            // Agregamos token de usuario
             userWithoutPassword.token = createToken(user, CONSUMER_TOKEN_TYPE, '20m')
         
-            // Agregamos refresh token de usuario
             userWithoutPassword.refreshToken = createToken(user, REFRESH_TOKEN_TYPE, '2d')
 
-            // Creamos evento de tipo REGISTER
             storeEvent({
                 type: eventTypes.REGISTER,
                 context: { id: user.id }
